@@ -7,14 +7,6 @@ on:
     branches: [ main ]
 
 jobs:
-
-  build:
-    runs-on: ubuntu-latest
-    name: CI Pipeline
-    steps:
-    - uses: actions/checkout@v2
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag my_app:latest
       
   deploy:
     name: CD Pipeline
@@ -25,9 +17,7 @@ jobs:
         node-version: ['12.x']
         appname: ['my_app']
         deploy-group: ['staging']
-        
-    needs: build
-    
+            
     steps:
       - uses: actions/checkout@v2
       # Configure AWS credentials
@@ -48,6 +38,7 @@ jobs:
           ECR_REPOSITORY: my_app
           IMAGE_TAG: latest
         run: |
+          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG . --file Dockerfile
           docker tag my_app:latest $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
     
