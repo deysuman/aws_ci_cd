@@ -14,14 +14,3 @@ RUN apt-get install -y git
 RUN python3.6 -m pip install pip --upgrade
 RUN python3.6 -m pip install wheel
 
-
-RUN apt-get update && apt-get install -y \
-    git \
-    vim \
-    nginx \
-    supervisor \
-    mysql-server \
-    mysql-client \
-    libmysqld-dev \
-    python3-setuptools \
-    pwgen && rm -rf /var/lib/apt/lists/*
