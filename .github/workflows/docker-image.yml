@@ -25,6 +25,9 @@ jobs:
         node-version: ['12.x']
         appname: ['my_app']
         deploy-group: ['staging']
+        
+    needs: build
+    
     steps:
       - uses: actions/checkout@v2
       # Configure AWS credentials
