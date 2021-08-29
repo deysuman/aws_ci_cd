@@ -1,16 +1,21 @@
-From ubuntu:18.04
+FROM node:latest
+
+RUN mkdir /app
+WORKDIR /app
 
 LABEL maintainer="email.sumandey@gmail.com"
 
-RUN apt-get update && \
-    apt-get install -y software-properties-common && \
-    add-apt-repository ppa:deadsnakes/ppa
-RUN apt-get update
+ENV PATH /app/node_modules/.bin:$PATH
 
-RUN apt-get install -y build-essential python3.6 python3.6-dev python3-pip python3.6-venv
-RUN apt-get install -y git
+COPY package.json /app/
+RUN npm install
 
-# update pip 
-RUN python3.6 -m pip install pip --upgrade
-RUN python3.6 -m pip install wheel
+# Or if you're using Yarn
+# ADD package.json yarn.lock /app/
+# RUN yarn install
 
+COPY . /app/
+
+EXPOSE 3000
+
+RUN npm start
