@@ -18,4 +18,4 @@ COPY . /app/
 
 EXPOSE 4000
 
-RUN npm start & 
+CMD ["node", "/app/server.js"]
