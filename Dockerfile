@@ -8,6 +8,7 @@ LABEL maintainer="email.sumandey@gmail.com"
 ENV PATH /app/node_modules/.bin:$PATH
 
 COPY package.json /app/
+RUN npm install -g npm@7.6.0
 RUN npm install
 
 # Or if you're using Yarn
