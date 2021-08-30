@@ -15,7 +15,7 @@ app.use(cors());
 
 // api routes
 app.use('/user', function (req, res) {
-    res.json({name:"Suman"});
+    res.json({name:"Suman", service:"Cron"});
 });
 
 // global error handler
