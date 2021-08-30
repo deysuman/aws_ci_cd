@@ -1,0 +1,15 @@
+version: "2"
+
+services:
+    application:
+        image: 533735265043.dkr.ecr.us-east-2.amazonaws.com/my_app
+        container_name: application
+        restart: always
+        ports:
+            - "80:4000"
+        networks:
+            - test
+
+networks:
+    test:
+        driver: bridge
