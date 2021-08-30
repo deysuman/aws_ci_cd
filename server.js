@@ -14,7 +14,7 @@ app.use(cors());
 //app.use(jwt());
 
 // api routes
-app.use('/', function (req, res) {
+app.use('/user', function (req, res) {
     res.json({name:"Suman"});
 });
 
